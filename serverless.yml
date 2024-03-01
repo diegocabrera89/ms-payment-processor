@@ -1,0 +1,67 @@
+service: ms-payment-processor
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: provided.al2023
+  architecture: arm64
+  stage: dev
+  timeout: 29
+  logRetentionInDays: 7
+  environment:
+    REGION: us-east-1
+    PROCESSOR_DYNAMODB: ${self:resources.Resources.processor.Properties.TableName}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - "arn:aws:dynamodb:${self:provider.environment.REGION}:*:table/${self:provider.environment.PROCESSOR_DYNAMODB}"
+
+custom:
+  version: v1
+
+package:
+  individually: true
+
+functions:
+  createProcessor:
+    handler: bootstrap
+    architecture: arm64
+    events:
+      - http:
+          path: ${self:custom.version}/processors
+          method: post
+    package:
+      artifact: bin/cmd/createProcessorHandler/createProcessorHandler.zip
+
+resources:
+  Resources:
+    processor:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: ${self:service}-${self:provider.stage}-processor
+        AttributeDefinitions:
+          - AttributeName: processorID #key or primary key
+            AttributeType: S #Data type
+          - AttributeName: merchantID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: processorID
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: merchantIDIndex
+            KeySchema:
+              - AttributeName: merchantID
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
+        BillingMode: PAY_PER_REQUEST
