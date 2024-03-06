@@ -6,9 +6,11 @@ profile = pet
 
 build: clean gomodgen import
 	$(compile) bin/cmd/createProcessorHandler/bootstrap cmd/createProcessorHandler/create_processor_handler.go
+	$(compile) bin/cmd/getProcessorHandler/bootstrap cmd/getProcessorHandler/get_processor_handler.go
 
 zip:
 	$(zipper) bin/cmd/createProcessorHandler/createProcessorHandler.zip bin/cmd/createProcessorHandler/bootstrap
+	$(zipper) bin/cmd/getProcessorHandler/getProcessorHandler.zip bin/cmd/getProcessorHandler/bootstrap
 
 clean:
 	go clean

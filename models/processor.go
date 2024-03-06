@@ -10,6 +10,9 @@ type Processor struct {
 	TerminalID     string `json:"terminalID" dynamodbav:"terminalID"`
 	MerchantID     string `json:"merchantID" dynamodbav:"merchantID"`
 	SoftDescriptor string `json:"softDescriptor" dynamodbav:"softDescriptor"`
-	CreatedAt      string `json:"createdAt" dynamodbav:"createdAt"`
+	BankID         string `json:"bankID" dynamodbav:"bankID"`
+	AccountID      string `json:"accountID" dynamodbav:"accountID"`
+	CreatedAt      int64  `json:"createdAt" dynamodbav:"createdAt"`
+	UpdatedAt      int64  `json:"updatedAt" dynamodbav:"updatedAt"`
 	Status         string `json:"status" dynamodbav:"status"`
 }

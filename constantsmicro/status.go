@@ -1,6 +1,6 @@
 package constantsmicro
 
 const (
-	// StatusProcessorActive constant to define Processor status.
-	StatusProcessorActive = "Active"
+	// StatusProcessorEnable constant to define Processor status.
+	StatusProcessorEnable = "Enable"
 )

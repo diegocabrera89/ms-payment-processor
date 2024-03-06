@@ -24,12 +24,12 @@ func NewProcessorHandler() *ProcessorHandler {
 	}
 }
 
-// CreateProcessorHandler handler for createProcessorHandler new processor.
-func (h *ProcessorHandler) CreateProcessorHandler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	logs.LogTrackingInfo("CreateProcessorHandler", ctx, request)
-	createProcessorHandler, errorProcessorHandler := h.processorService.CreateProcessorService(ctx, request)
+// GetProcessorByMerchantIDHandler handler for getProcessorByMerchantIDHandler new processor.
+func (h *ProcessorHandler) GetProcessorByMerchantIDHandler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	logs.LogTrackingInfo("GetProcessorByMerchantIDHandler", ctx, request)
+	createProcessorHandler, errorProcessorHandler := h.processorService.GetProcessorByMerchantIDService(ctx, request)
 	if errorProcessorHandler != nil {
-		logs.LogTrackingError("CreateProcessorHandler", "CreateProcessorService", ctx, request, errorProcessorHandler)
+		logs.LogTrackingError("GetProcessorByMerchantIDHandler", "GetProcessorByMerchantIDService", ctx, request, errorProcessorHandler)
 		return response.ErrorResponse(http.StatusInternalServerError, constantsmicro.ErrorCreatingProcessor)
 	}
 	return createProcessorHandler, nil
@@ -40,7 +40,7 @@ func main() {
 	processorHandler := NewProcessorHandler()
 
 	// Wrap the handler function with logging middleware.
-	handlerWithLogging := metadata.MiddlewareMetadata(processorHandler.CreateProcessorHandler)
+	handlerWithLogging := metadata.MiddlewareMetadata(processorHandler.GetProcessorByMerchantIDHandler)
 
 	// Start the Lambda handler with the handler function wrapped in the middleware.
 	lambda.Start(handlerWithLogging)

@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/aws/aws-lambda-go v1.46.0
-	github.com/diegocabrera89/ms-payment-core v1.0.3
+	github.com/diegocabrera89/ms-payment-core v1.0.35
 	github.com/google/uuid v1.6.0
 )
 

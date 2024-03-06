@@ -21,8 +21,9 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource:
-        - "arn:aws:dynamodb:${self:provider.environment.REGION}:*:table/${self:provider.environment.PROCESSOR_DYNAMODB}"
+      Resource: "*" # TODO: Replace with index ARN
+#      Resource:
+#        - "arn:aws:dynamodb:${self:provider.environment.REGION}:*:table/${self:provider.environment.PROCESSOR_DYNAMODB}"
 
 custom:
   version: v1
@@ -36,10 +37,20 @@ functions:
     architecture: arm64
     events:
       - http:
-          path: ${self:custom.version}/processors
+          path: ${self:custom.version}/processors/kinds/processor
           method: post
     package:
       artifact: bin/cmd/createProcessorHandler/createProcessorHandler.zip
+
+  getProcessor:
+    handler: bootstrap
+    architecture: arm64
+    events:
+      - http:
+          path: ${self:custom.version}/processors/kinds/processor/{merchantID}
+          method: get
+    package:
+      artifact: bin/cmd/getProcessorHandler/getProcessorHandler.zip
 
 resources:
   Resources:

@@ -37,8 +37,8 @@ github.com/aws/aws-sdk-go-v2/service/sts v1.28.1/go.mod h1:uQ7YYKZt3adCRrdCBREm1
 github.com/aws/smithy-go v1.20.1 h1:4SZlSlMr36UEqC7XOyRVb27XMeZubNcBNN+9IgEPIQw=
 github.com/aws/smithy-go v1.20.1/go.mod h1:krry+ya/rV9RDcV/Q16kpu6ypI4K2czasz0NC3qS14E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/diegocabrera89/ms-payment-core v1.0.3 h1:sZdSWDD4M9K8im6k/1d8dRUp4C8UsvrUA+rRfmn900M=
-github.com/diegocabrera89/ms-payment-core v1.0.3/go.mod h1:5N5kToQJtBVsCFT9TDXEKVCgr0ibDNGk6z5EorV5vI8=
+github.com/diegocabrera89/ms-payment-core v1.0.35 h1:Akj3qBYZMwrW3OFu2gymxManIMUB+I1vvTh0jA4r/eU=
+github.com/diegocabrera89/ms-payment-core v1.0.35/go.mod h1:5N5kToQJtBVsCFT9TDXEKVCgr0ibDNGk6z5EorV5vI8=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/jmespath/go-jmespath v0.4.0 h1:BEgLn5cpjn8UN1mAw4NjwDrS35OdebyEtFe+9YPoQUg=
