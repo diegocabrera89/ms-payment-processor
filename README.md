@@ -1,4 +1,4 @@
-# ms-payment-merchant
+# ms-payment-processor
 
 Microservice code in GO. This microservice manages processor transactions
 
